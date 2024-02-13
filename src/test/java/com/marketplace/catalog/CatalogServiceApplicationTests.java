@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.platform.commons.util.CollectionUtils;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -18,6 +19,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+
+import static net.bytebuddy.matcher.ElementMatchers.is;
 
 @ExtendWith(MockitoExtension.class)
 class CatalogServiceApplicationTests {
@@ -50,5 +53,16 @@ class CatalogServiceApplicationTests {
                 new Category(1, "Семена"));
         Mockito.when(productRepository.findById(1L)).thenReturn(Optional.of(product));
         Assertions.assertThrows(Exception.class,()-> productService.getProductById(2L));
+    }
+    @Test
+    void getProductsByCategoryId_ValidId_ReturnsProducts() throws Exception {
+        Product product = new Product(1, "Помидоры", "Семейство помидоров", 299.99,
+                new Category(1, "Семена"));
+        Product product1 = new Product(1, "Помидоры", "Семейство помидоров", 299.99,
+                new Category(1, "Семена"));
+        List<Product> productList = new ArrayList<>(Arrays.asList(product, product1));
+        Mockito.when(productRepository.getProductsByCategory_Id(1L)).
+                thenReturn(Optional.of(productList));
+        Assertions.assertIterableEquals(productList, productService.getProductsByCategory(1L));
     }
 }
