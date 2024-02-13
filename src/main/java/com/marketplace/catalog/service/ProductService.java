@@ -18,4 +18,8 @@ public class ProductService {
     public Product getProductById(long id) throws Exception {
         return productRepository.findById(id).orElseThrow(() -> new Exception("Not found"));
     }
+    public List<Product> getProductsByCategory(long id) throws Exception{
+        List<Product> products = productRepository.getProductsByCategory_Id(id).orElseThrow(()->new Exception("Таких товаров нет"));
+        return products;
+    }
 }

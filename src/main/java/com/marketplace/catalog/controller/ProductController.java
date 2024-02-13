@@ -25,4 +25,14 @@ public class ProductController {
             return ResponseEntity.ok(null);
         }
     }
+    @GetMapping("/category/{id}")
+    public ResponseEntity<List<Product>> getProductsByCategory(@PathVariable long id){
+        try {
+            List<Product> products = productService.getProductsByCategory(id);
+            return ResponseEntity.ok(products);
+        }catch (Exception exception){
+            System.out.println(exception.getMessage());
+            return ResponseEntity.ok(null);
+        }
+    }
 }
