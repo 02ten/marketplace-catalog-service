@@ -12,14 +12,19 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ProductService {
     private final ProductRepository productRepository;
+    private final CategoryService categoryService;
     public List<Product> getAllProducts(){
         return productRepository.findAll();
     }
-    public Product getProductById(long id) throws Exception {
-        return productRepository.findById(id).orElseThrow(() -> new Exception("Not found"));
+    public Product getProductById(Long id) {
+        return productRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Такого продукта нет"));
     }
-    public List<Product> getProductsByCategory(long id) throws Exception{
-        List<Product> products = productRepository.getProductsByCategory_Id(id).orElseThrow(()->new Exception("Таких товаров нет"));
-        return products;
+    public List<Product> getProductsByCategory(Long id){
+        if(!categoryService.existCategoryById(id)){
+            throw new IllegalArgumentException("Такой категории нет");
+        }
+        return productRepository.getProductsByCategory_Id(id);
     }
+
+
 }

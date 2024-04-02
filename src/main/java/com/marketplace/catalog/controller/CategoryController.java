@@ -3,14 +3,17 @@ package com.marketplace.catalog.controller;
 import com.marketplace.catalog.model.Category;
 import com.marketplace.catalog.service.CategoryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController("/api/category")
+@RestController
+@RequestMapping("/api/category")
 @RequiredArgsConstructor
 public class CategoryController {
     private final CategoryService categoryService;
@@ -20,13 +23,12 @@ public class CategoryController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Category> getCategoryById(@PathVariable long id){
+    public ResponseEntity<?> getCategoryById(@PathVariable Long id){
         try{
            Category category = categoryService.getCategoryById(id);
            return ResponseEntity.ok(category);
         }catch (Exception exception){
-            System.out.println(exception.getMessage());
-            return ResponseEntity.ok(null);
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 }

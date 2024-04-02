@@ -17,9 +17,11 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    public Category getCategoryById(long id) throws Exception {
-        return categoryRepository.findById(id).orElseThrow(() -> new Exception("Такой категории нет"));
+    public Category getCategoryById(Long id) {
+        return categoryRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Такой категории нет"));
     }
-
+    public boolean existCategoryById(Long id){
+        return categoryRepository.existsCategoryById(id);
+    }
 
 }
