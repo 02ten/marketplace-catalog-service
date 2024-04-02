@@ -28,6 +28,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.projectlombok:lombok:1.18.22'
     compileOnly 'org.projectlombok:lombok'
+    implementation 'io.jaegertracing:jaeger-client:1.6.0'
+    implementation 'org.graylog2:gelfj:1.1.16'
     runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
