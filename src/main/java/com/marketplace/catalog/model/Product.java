@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "t_product")
 @NoArgsConstructor
@@ -24,7 +26,8 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
-
+    @OneToMany
+    private List<Image> images;
     @Override
     public String toString() {
         return "Product{" +
