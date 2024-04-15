@@ -6,6 +6,7 @@ import com.marketplace.catalog.repositories.CartRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -60,5 +61,9 @@ public class CartService {
         }
         cartRepository.deleteById(cartId);
 
+    }
+    @Transactional
+    public void deleteCartByUserId(Long userId){
+        cartRepository.deleteCartsByUserId(userId);
     }
 }
