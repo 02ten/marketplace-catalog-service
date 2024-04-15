@@ -38,9 +38,9 @@ class CatalogServiceApplicationTests {
         Category category = new Category(1, "Семена", null);
         List<Product> productList = new ArrayList<>(Arrays.asList(
                 new Product(1L, "Помидоры", 299.99,  "Семейство помидоров", 1L,
-                        category),
+                        category,null),
                 new Product(2L, "Помидоры", 299.99,  "Семейство помидоров", 1L,
-                        category)
+                        category, null)
         ));
         Mockito.when(productRepository.findAll()).thenReturn(productList);
         Assertions.assertArrayEquals(productList.toArray(), productService.getAllProducts().toArray());
@@ -49,7 +49,7 @@ class CatalogServiceApplicationTests {
     void getProductById_validId_ReturnsAllProducts() throws Exception {
         Category category = new Category(1, "Семена", null);
         Product product = new Product(1L, "Помидоры", 299.99,  "Семейство помидоров", 1L,
-                category);
+                category,null);
         Mockito.when(productRepository.findById(1L)).thenReturn(Optional.of(product));
         Assertions.assertEquals(product, productService.getProductById(1L));
     }
@@ -57,7 +57,7 @@ class CatalogServiceApplicationTests {
     void getProductById_invalidId_ReturnsException(){
         Category category = new Category(1, "Семена", null);
         Product product = new Product(1L, "Помидоры", 299.99,  "Семейство помидоров", 1L,
-                category);
+                category,null);
         Mockito.when(productRepository.findById(1L)).thenReturn(Optional.of(product));
         Assertions.assertThrows(Exception.class,()-> productService.getProductById(2L));
     }
@@ -65,9 +65,9 @@ class CatalogServiceApplicationTests {
     void getProductsByCategoryId_ValidId_ReturnsProducts() throws Exception {
         Category category = new Category(1, "Семена", null);
         Product product = new Product(1L, "Помидоры", 299.99,  "Семейство помидоров", 1L,
-                category);
+                category,null);
         Product product1 = new Product(2L, "Помидоры", 299.99,  "Семейство помидоров", 1L,
-                category);
+                category,null);
 
         List<Product> productList = new ArrayList<>(Arrays.asList(product, product1));
         Mockito.when(categoryService.existCategoryById(1L)).thenReturn(true);
