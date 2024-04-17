@@ -1,7 +1,6 @@
 package com.marketplace.catalog.controller;
 
 import com.marketplace.catalog.model.Order;
-import com.marketplace.catalog.service.CartService;
 import com.marketplace.catalog.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

@@ -1,9 +1,14 @@
 package com.marketplace.catalog.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name="t_images")
+@Getter
+@Setter
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,8 +18,9 @@ public class Image {
     private String contentType;
     private boolean isPreviewImage;
     @Lob
-    @Column(name = "bytes", columnDefinition = "bytea")
+    @Column(name = "bytes", columnDefinition = "bigint")
     private byte[] bytes;
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     private Product product;
 }

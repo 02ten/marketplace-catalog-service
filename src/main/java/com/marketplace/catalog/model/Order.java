@@ -24,6 +24,7 @@ public class Order {
     private Date creationDate;
     @Column(name="address")
     private String address;
+    private String telephone;
     private Long userId;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="order_products_id")
