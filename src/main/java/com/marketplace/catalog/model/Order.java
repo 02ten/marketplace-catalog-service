@@ -32,6 +32,6 @@ public class Order {
     private boolean active;
 
     private double summary;
-
+    private String status;
     private String payment;
 }
