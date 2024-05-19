@@ -5,7 +5,6 @@ import com.marketplace.catalog.model.Order;
 import com.marketplace.catalog.model.OrderProducts;
 import com.marketplace.catalog.repositories.OrderRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -38,6 +37,6 @@ public class OrderService {
         orderRepository.save(newOrder);
     }
     public List<Order> getAllProductsByUser(Long userId){
-        return orderRepository.getOrdersByUser_Id(userId);
+        return orderRepository.getOrdersByUserId(userId);
     }
 }
