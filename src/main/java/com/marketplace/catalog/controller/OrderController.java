@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/order")
 @RequiredArgsConstructor
@@ -16,5 +18,9 @@ public class OrderController {
         orderService.createOrder(orderDTO, userId);
         return ResponseEntity.ok("Заказ создан");
 
+    }
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<Order>> getAllOrdersByUser(@PathVariable Long userId){
+        return ResponseEntity.ok(orderService.getAllProductsByUser(userId));
     }
 }

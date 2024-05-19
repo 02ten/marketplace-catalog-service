@@ -37,4 +37,7 @@ public class OrderService {
         cartService.deleteCartByUserId(userId);
         orderRepository.save(newOrder);
     }
+    public List<Order> getAllProductsByUser(Long userId){
+        return orderRepository.getOrdersByUser_Id(userId);
+    }
 }
