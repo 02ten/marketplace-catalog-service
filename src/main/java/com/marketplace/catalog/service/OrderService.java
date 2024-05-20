@@ -36,7 +36,10 @@ public class OrderService {
         cartService.deleteCartByUserId(userId);
         orderRepository.save(newOrder);
     }
-    public List<Order> getAllProductsByUser(Long userId){
+    public List<Order> getAllOrdersByUser(Long userId){
         return orderRepository.getOrdersByUserId(userId);
+    }
+    public List<Order> getAllOrders(){
+        return orderRepository.findAll();
     }
 }
