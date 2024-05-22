@@ -29,10 +29,9 @@ public class OrderController {
         return ResponseEntity.ok(orderService.getAllOrders());
     }
     @PutMapping("/status")
-    public ResponseEntity<String> updateOrderStatus(@RequestBody Long id, @RequestBody String status){
-        System.out.println(id + " " + status);
+    public ResponseEntity<String> updateOrderStatus(@RequestBody Order order){
         try{
-            orderService.updateOrderStatus(id, status);
+            orderService.updateOrderStatus(order);
             return ResponseEntity.ok("Статус успешно изменен");
         }catch (RuntimeException ex){
             System.out.println(ex.getMessage());

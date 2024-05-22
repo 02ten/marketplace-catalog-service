@@ -42,10 +42,9 @@ public class OrderService {
     public List<Order> getAllOrders(){
         return orderRepository.findAll();
     }
-    public String updateOrderStatus(Long id, String status){
-        System.out.println(id + " " + status);
-        Order order = orderRepository.findById(id).orElseThrow(()-> new RuntimeException("Такого заказа нет"));
-        order.setStatus(status);
+    public String updateOrderStatus(Order order){
+        Order toUpdateOrder = orderRepository.findById(order.getId()).orElseThrow(()-> new RuntimeException("Такого заказа нет"));
+        toUpdateOrder.setStatus(order.getStatus);
         orderRepository.save(order);
         return "Изменение успешно";
     }
