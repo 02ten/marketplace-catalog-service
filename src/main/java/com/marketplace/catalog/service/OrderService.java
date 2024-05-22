@@ -44,7 +44,7 @@ public class OrderService {
     }
     public String updateOrderStatus(Order order){
         Order toUpdateOrder = orderRepository.findById(order.getId()).orElseThrow(()-> new RuntimeException("Такого заказа нет"));
-        toUpdateOrder.setStatus(order.getStatus);
+        toUpdateOrder.setStatus(order.getStatus());
         orderRepository.save(order);
         return "Изменение успешно";
     }
