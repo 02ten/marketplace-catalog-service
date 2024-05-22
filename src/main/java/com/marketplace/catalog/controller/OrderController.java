@@ -34,6 +34,7 @@ public class OrderController {
             orderService.updateOrderStatus(id, status);
             return ResponseEntity.ok("Статус успешно изменен");
         }catch (RuntimeException ex){
+            System.out.println(ex.getMessage());
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }

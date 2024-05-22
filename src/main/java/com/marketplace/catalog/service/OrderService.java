@@ -43,6 +43,7 @@ public class OrderService {
         return orderRepository.findAll();
     }
     public String updateOrderStatus(Long id, String status){
+        System.out.println(id + " " + status);
         Order order = orderRepository.findById(id).orElseThrow(()-> new RuntimeException("Такого заказа нет"));
         order.setStatus(status);
         orderRepository.save(order);
