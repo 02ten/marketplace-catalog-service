@@ -30,6 +30,7 @@ public class OrderController {
     }
     @PutMapping("/status")
     public ResponseEntity<String> updateOrderStatus(@RequestBody Long id, @RequestBody String status){
+        System.out.println(id + " " + status);
         try{
             orderService.updateOrderStatus(id, status);
             return ResponseEntity.ok("Статус успешно изменен");
