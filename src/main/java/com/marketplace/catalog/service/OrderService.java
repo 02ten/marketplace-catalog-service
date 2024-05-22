@@ -42,4 +42,10 @@ public class OrderService {
     public List<Order> getAllOrders(){
         return orderRepository.findAll();
     }
+    public String updateOrderStatus(Long id, String status){
+        Order order = orderRepository.findById(id).orElseThrow(()-> new RuntimeException("Такого заказа нет"));
+        order.setStatus(status);
+        orderRepository(order);
+        return "Изменение успешно";
+    }
 }

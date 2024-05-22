@@ -3,6 +3,7 @@ package com.marketplace.catalog.controller;
 import com.marketplace.catalog.model.Order;
 import com.marketplace.catalog.service.OrderService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,5 +27,14 @@ public class OrderController {
     @GetMapping
     public ResponseEntity<List<Order>> getAllOrders(){
         return ResponseEntity.ok(orderService.getAllOrders());
+    }
+    @PutMapping("/status")
+    public ResponseEntity<String> updateOrderStatus(@RequestBody Long id, @RequestBody String status){
+        try{
+            orderService.updateOrderStatus(id, status);
+            return ResponseEntity.ok("Статус успешно изменен");
+        }catch (RuntimeException ex){
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 }
